@@ -1,0 +1,663 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Java--GUI窗体的创建和组件的添加 | Libra个人博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="regel-zack">
+    
+
+    
+    <meta name="description" content="Swing前言 这里是 Java–GUI 系列文章，主要介绍Java中的图形化界面编程及其实现。Java的图形化界面编程除了在自学中可以直观地感受到效果，还会在考试的题目中察觉到重要性  关于作者：  小白（Libra），计算机兴趣爱好者，Java，C，Hadoop，MySQL Email : &amp;#x68;&amp;#101;&amp;#119;&amp;#x65;&amp;#x69;&amp;#50;&amp;#x30;&amp;#48;&amp;#x33;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java--GUI窗体的创建和组件的添加">
+<meta property="og:url" content="https://regel-zack.github.io/2021/11/10/Java-GUI%E7%AA%97%E4%BD%93%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B7%BB%E5%8A%A0/index.html">
+<meta property="og:site_name" content="Libra个人博客">
+<meta property="og:description" content="Swing前言 这里是 Java–GUI 系列文章，主要介绍Java中的图形化界面编程及其实现。Java的图形化界面编程除了在自学中可以直观地感受到效果，还会在考试的题目中察觉到重要性  关于作者：  小白（Libra），计算机兴趣爱好者，Java，C，Hadoop，MySQL Email : &amp;#x68;&amp;#101;&amp;#119;&amp;#x65;&amp;#x69;&amp;#50;&amp;#x30;&amp;#48;&amp;#x33;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-10T11:35:31.000Z">
+<meta property="article:modified_time" content="2021-11-11T08:42:37.006Z">
+<meta property="article:author" content="regel-zack">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Libra个人博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/HeadTop.jpg" alt="Libra个人博客" title="Libra个人博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Libra个人博客">Libra个人博客</a></h1>
+				<h2 class="blog-motto">只是追求内心深处公平正义罢了</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+						<li><a href="/tags">tages</a></li>
+					
+						<li><a href="/categories">categories</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:regel-zack.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2021/11/10/Java-GUI窗体的创建和组件的添加/" title="Java--GUI窗体的创建和组件的添加" itemprop="url">Java--GUI窗体的创建和组件的添加</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="regel-zack" target="_blank" itemprop="author">regel-zack</a>
+		
+  <p class="article-time">
+    <time datetime="2021-11-10T11:35:31.000Z" itemprop="datePublished"> 发表于 2021-11-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Swing"><span class="toc-number">1.</span> <span class="toc-text">Swing</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">1.2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AAJFrame%E7%AA%97%E5%8F%A3"><span class="toc-number">1.3.</span> <span class="toc-text">第一个JFrame窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JLabel-%E6%A0%87%E7%AD%BE%E7%BB%84%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">JLabel 标签组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JButton-%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text">JButton 按钮组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.6.</span> <span class="toc-text">小结</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Swing"><a href="#Swing" class="headerlink" title="Swing"></a>Swing</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>这里是 <em>Java–GUI</em> 系列文章，主要介绍Java中的图形化界面编程及其实现。<br>Java的图形化界面编程除了在自学中可以直观地感受到效果，还会在考试的题目中察觉到重要性</p>
+</blockquote>
+<p>关于作者：</p>
+<ul>
+<li>小白（Libra），计算机兴趣爱好者，Java，C，Hadoop，MySQL</li>
+<li>Email : <a href="mailto:&#x68;&#101;&#119;&#x65;&#x69;&#50;&#x30;&#48;&#x33;&#x31;&#x30;&#48;&#57;&#64;&#x31;&#54;&#x33;&#46;&#x63;&#x6f;&#x6d;">&#x68;&#101;&#119;&#x65;&#x69;&#50;&#x30;&#48;&#x33;&#x31;&#x30;&#48;&#57;&#64;&#x31;&#54;&#x33;&#46;&#x63;&#x6f;&#x6d;</a></li>
+<li>GitHub : <a target="_blank" rel="noopener" href="https://github.com/Regel-zack">https://github.com/Regel-zack</a></li>
+</ul>
+<p>转载请注明出处</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h2 id="第一个JFrame窗口"><a href="#第一个JFrame窗口" class="headerlink" title="第一个JFrame窗口"></a>第一个JFrame窗口</h2><blockquote>
+<p>忽略掉没讲到的内容会在后续涉及到</p>
+</blockquote>
+<p>首先建立一个运行类，用来存放主方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Application 类</span><br><span class="line"> * 操作人：小白</span><br><span class="line"> * 日期：2021/11/8</span><br><span class="line"> * 时间：13:02</span><br><span class="line"> * @author 别欺负小白了好咩</span><br><span class="line"> */</span><br><span class="line">public class Application &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        MyFirstFrame test = new MyFirstFrame();</span><br><span class="line">        test.drawFrame();</span><br><span class="line">        test.drawFrame(200,300,50,100);</span><br><span class="line">        test.drawFrame();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>其次建立一个窗体类，其中带有窗体实例化以及绘制窗体的方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import javax.swing.*;</span><br><span class="line">import java.awt.*;</span><br><span class="line">/**</span><br><span class="line"> * MyFirstFrame 类</span><br><span class="line"> * 操作人：小白</span><br><span class="line"> * 日期：2021/11/8</span><br><span class="line"> * 时间：13:04</span><br><span class="line"> * @author 别欺负小白了好咩</span><br><span class="line"> */</span><br><span class="line">public class MyFirstFrame &#123;</span><br><span class="line">    int WIDTH;</span><br><span class="line">    int HEIGHT;</span><br><span class="line">    int LOCATION_X;</span><br><span class="line">    int LOCATION_Y;</span><br><span class="line"></span><br><span class="line">    JFrame f =  new JFrame(&quot;第一个Swing窗体&quot;);</span><br><span class="line"></span><br><span class="line">    public void drawFrame()&#123;</span><br><span class="line">        f.setSize(300,100);</span><br><span class="line">        f.setBackground(Color.WHITE);</span><br><span class="line">        f.setLocation(500,500);</span><br><span class="line">        f.setVisible(true);</span><br><span class="line">        System.out.println(&quot;默认窗口已显示&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void drawFrame(int WIDTH, int HEIGHT, int LOCATION_X, int LOCATION_Y) &#123;</span><br><span class="line">        f.setSize(WIDTH,HEIGHT); ;</span><br><span class="line">        f.setBackground(Color.WHITE);</span><br><span class="line">        f.setLocation(LOCATION_X,LOCATION_Y);</span><br><span class="line">        f.setVisible(true);</span><br><span class="line">        System.out.println(&quot;自定义窗口已显示&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上代码仅作参考代码，具体教学思路请对照下面来看 <br>首先在窗体绘制后，我们可以指定窗体的大小，背景颜色，位置以及是否显示。<br>但是在打开多个窗口后（运行多次窗口绘制方法），只会出现一个窗口，具体原因是由于我们只实例化了一个窗口对象，其余的几次只是在那基础上做了一些参数的修改，以下代码实现了打开多个窗口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import javax.swing.*;</span><br><span class="line">import java.awt.*;</span><br><span class="line">/**</span><br><span class="line"> * MyFirstFrame 类</span><br><span class="line"> * 操作人：小白</span><br><span class="line"> * 日期：2021/11/8</span><br><span class="line"> * 时间：13:04</span><br><span class="line"> * @author 别欺负小白了好咩</span><br><span class="line"> */</span><br><span class="line">public class MyFirstFrame &#123;</span><br><span class="line">    int WIDTH;</span><br><span class="line">    int HEIGHT;</span><br><span class="line">    int LOCATION_X;</span><br><span class="line">    int LOCATION_Y;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public void drawFrame()&#123;</span><br><span class="line">        JFrame f =  new JFrame(&quot;这是默认窗口&quot;);</span><br><span class="line">        f.setSize(300,100);</span><br><span class="line">        f.setBackground(Color.WHITE);</span><br><span class="line">        f.setLocation(500,500);</span><br><span class="line">        f.setVisible(true);</span><br><span class="line">        System.out.println(&quot;默认窗口已显示&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void drawFrame(int WIDTH, int HEIGHT, int LOCATION_X, int LOCATION_Y) &#123;</span><br><span class="line">        JFrame f =  new JFrame(&quot;这是自定义窗口&quot;);</span><br><span class="line">        f.setSize(WIDTH,HEIGHT); ;</span><br><span class="line">        f.setBackground(Color.WHITE);</span><br><span class="line">        f.setLocation(LOCATION_X,LOCATION_Y);</span><br><span class="line">        f.setVisible(true);</span><br><span class="line">        System.out.println(&quot;自定义窗口已显示&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用前面的方法会避免创建多余的窗口，具体看需求来选择如何实现。</p>
+<hr>
+<h2 id="JLabel-标签组件"><a href="#JLabel-标签组件" class="headerlink" title="JLabel 标签组件"></a>JLabel 标签组件</h2><p>可以将JFrame理解为一个盘子，那么盘子上自然就可以承载其他的物品（组件），而这些组件只需要放上去（add）就可以随着盘子一起呈现给用户了。</p>
+<p>JLabel 类的常用方法和常量<br>序号 | 方法或常量 | 类型 | 作用<br>:—:|:—:|:—:|:—:<br>1 | public static final int LEFT | 常量 | 标签文本左对齐<br>2 | public static final int CENTER | 常量 | 标签文本居中对齐<br>3 | public static final int RIGHT | 常量 | 标签文本右对齐<br>4 | public JLabel() throws HeadlessException | 构造 | 创建一个JLabel对象<br>5 | public JLabel(String text) throws HeadlessException | 构造 | 创建一个标签并指定文本内容<br>6 | public JLabel(String text,int alignment) throws HeadlessException | 构造 | 创建一个标签并指定文本内容以及对齐方式，可以使用JLabel.LEFT 、JLabel.RIGHT、 JLabel.CENTER3个值<br>7 | public JLabel(String text,Icon icon,int alignment) throws HeadlessException | 构造 | 创建具有指定文本、图像和水平对齐方式的JLabel对象<br>8 | public JLabel(Icon image,int alignment) | 构造 | 创建具有指定图像和水平对齐方式的JLabel实例<br>9 | public void setText(String text) | 普通 | 设置标签的文本<br>10 | public String getText() | 普通 | 取得标签的文本<br>11 | public void setAlignment(int alignment) | 普通 | 设置标签对齐方式<br>12 | public void setIcon(Icon icon) | 普通 | 设置指定的图像</p>
+<p>示例代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import javax.swing.*;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Application 类</span><br><span class="line"> * 操作人：小白</span><br><span class="line"> * 日期：2021/11/8</span><br><span class="line"> * 时间：13:02</span><br><span class="line"> * @author 别欺负小白了好咩</span><br><span class="line"> */</span><br><span class="line">public class Application &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        MyFirstFrame test = new MyFirstFrame();</span><br><span class="line">        test.drawFrame();</span><br><span class="line">        test.addJLabel(new JLabel(&quot;这是一个标签文本&quot;),test.f);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import javax.swing.*;</span><br><span class="line">import java.awt.*;</span><br><span class="line">/**</span><br><span class="line"> * MyFirstFrame 类</span><br><span class="line"> * 操作人：小白</span><br><span class="line"> * 日期：2021/11/8</span><br><span class="line"> * 时间：13:04</span><br><span class="line"> * @author 别欺负小白了好咩</span><br><span class="line"> */</span><br><span class="line">public class MyFirstFrame &#123;</span><br><span class="line">    int WIDTH;</span><br><span class="line">    int HEIGHT;</span><br><span class="line">    int LOCATION_X;</span><br><span class="line">    int LOCATION_Y;</span><br><span class="line">    JFrame f =  new JFrame(&quot;这是一个窗口&quot;);</span><br><span class="line"></span><br><span class="line">    public void drawFrame()&#123;</span><br><span class="line">        f.setSize(300,100);</span><br><span class="line">        f.setBackground(Color.WHITE);</span><br><span class="line">        f.setLocation(500,500);</span><br><span class="line">        f.setVisible(true);</span><br><span class="line">        System.out.println(&quot;默认窗口已显示&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void drawFrame(int WIDTH, int HEIGHT, int LOCATION_X, int LOCATION_Y) &#123;</span><br><span class="line">        f.setSize(WIDTH,HEIGHT); ;</span><br><span class="line">        f.setBackground(Color.WHITE);</span><br><span class="line">        f.setLocation(LOCATION_X,LOCATION_Y);</span><br><span class="line">        f.setVisible(true);</span><br><span class="line">        System.out.println(&quot;自定义窗口已显示&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void addJLabel(JLabel jLabel,JFrame jFrame)&#123;</span><br><span class="line">        jFrame.add(jLabel);</span><br><span class="line">        System.out.println(&quot;标签组件已添加完毕！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其中标签文本也可以定义成类变量来以便不需要临时实例化，这样的好处在于可以修改样式以及修改内容，具体可以看需求，这里仅做演示</p>
+</blockquote>
+<hr>
+<h2 id="JButton-按钮组件"><a href="#JButton-按钮组件" class="headerlink" title="JButton 按钮组件"></a>JButton 按钮组件</h2><p>按钮组件使用跟标签组件大体相似，这里不一一列举其常用方法，仅作示例</p>
+<blockquote>
+<p>根据之前的调整，我们的代码可以修改为下面这样</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import javax.swing.*;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Application 类</span><br><span class="line"> * 操作人：小白</span><br><span class="line"> * 日期：2021/11/8</span><br><span class="line"> * 时间：13:02</span><br><span class="line"> * @author 别欺负小白了好咩</span><br><span class="line"> */</span><br><span class="line">public class Application &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        MyFirstFrame test = new MyFirstFrame();</span><br><span class="line">        test.drawFrame();</span><br><span class="line">        test.drawJLabel(&quot;这个是窗体之上的标签&quot;);</span><br><span class="line">        test.drawJButton(&quot;这个是窗体之上的按钮&quot;);</span><br><span class="line">        test.addJLabel(test.l,test.f);</span><br><span class="line">        test.addJLabel(test.b,test.f);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">import javax.swing.*;</span><br><span class="line">import java.awt.*;</span><br><span class="line">/**</span><br><span class="line"> * MyFirstFrame 类</span><br><span class="line"> * 操作人：小白</span><br><span class="line"> * 日期：2021/11/8</span><br><span class="line"> * 时间：13:04</span><br><span class="line"> * @author 别欺负小白了好咩</span><br><span class="line"> */</span><br><span class="line">public class MyFirstFrame &#123;</span><br><span class="line">    int WIDTH;</span><br><span class="line">    int HEIGHT;</span><br><span class="line">    int LOCATION_X;</span><br><span class="line">    int LOCATION_Y;</span><br><span class="line">    JFrame f =  new JFrame(&quot;这是一个窗口&quot;);</span><br><span class="line">    JLabel l = new JLabel(&quot;这是一个标签&quot;);</span><br><span class="line">    JButton b = new JButton(&quot;这是一个按钮&quot;);</span><br><span class="line"></span><br><span class="line">    public void drawFrame()&#123;</span><br><span class="line">        this.drawFrame(300,100,500,500);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void drawFrame(int WIDTH, int HEIGHT, int LOCATION_X, int LOCATION_Y) &#123;</span><br><span class="line">        f.setSize(WIDTH,HEIGHT); ;</span><br><span class="line">        f.setBackground(Color.WHITE);</span><br><span class="line">        f.setLocation(LOCATION_X,LOCATION_Y);</span><br><span class="line">        f.setVisible(true);</span><br><span class="line">        System.out.println(&quot;窗口已显示&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void drawJLabel(String text)&#123;</span><br><span class="line">        l.setText(text);</span><br><span class="line">        System.out.println(&quot;标签内容已修改为： --&gt; &quot; + text);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void drawJButton(String text)&#123;</span><br><span class="line">        b.setText(text);</span><br><span class="line">        System.out.println(&quot;按钮内容已修改为： --&gt; &quot; + text);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void addJLabel(Container container,JFrame jFrame)&#123;</span><br><span class="line">        jFrame.add(container);</span><br><span class="line">        System.out.println(&quot;组件已添加完毕！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中控制台输出如下</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><pre><code>多加练习才能学好
+</code></pre>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://regel-zack.github.io/2021/11/10/Java-GUI%E7%AA%97%E4%BD%93%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B7%BB%E5%8A%A0/" data-title="Java--GUI窗体的创建和组件的添加 | Libra个人博客" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2021/11/10/hexo搭建自己的博客/" title="hexo搭建自己的博客">
+  <strong>上一篇：</strong><br/>
+  <span>
+  hexo搭建自己的博客</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Swing"><span class="toc-number">1.</span> <span class="toc-text">Swing</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">1.2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AAJFrame%E7%AA%97%E5%8F%A3"><span class="toc-number">1.3.</span> <span class="toc-text">第一个JFrame窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JLabel-%E6%A0%87%E7%AD%BE%E7%BB%84%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">JLabel 标签组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JButton-%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text">JButton 按钮组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.6.</span> <span class="toc-text">小结</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="https://github.com/Regel-zack" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/数据库-数据库系统原理/" title="数据库 数据库系统原理">数据库 数据库系统原理<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="h" target="_blank" title="0">0</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="t" target="_blank" title="1">1</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="t" target="_blank" title="2">2</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="p" target="_blank" title="3">3</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="s" target="_blank" title="4">4</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href=":" target="_blank" title="5">5</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="/" target="_blank" title="6">6</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="/" target="_blank" title="7">7</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="g" target="_blank" title="8">8</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="i" target="_blank" title="9">9</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="t" target="_blank" title="10">10</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="h" target="_blank" title="11">11</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="u" target="_blank" title="12">12</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="b" target="_blank" title="13">13</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="." target="_blank" title="14">14</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="c" target="_blank" title="15">15</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="o" target="_blank" title="16">16</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="m" target="_blank" title="17">17</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="/" target="_blank" title="18">18</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="R" target="_blank" title="19">19</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="e" target="_blank" title="20">20</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="g" target="_blank" title="21">21</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="e" target="_blank" title="22">22</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="l" target="_blank" title="23">23</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="-" target="_blank" title="24">24</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="z" target="_blank" title="25">25</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="a" target="_blank" title="26">26</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="c" target="_blank" title="27">27</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="k" target="_blank" title="28">28</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Welcome to My personal Blog! <br/>
+			只是一点点去做而已</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/https://github.com/Regel-zack" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:hewei20031009@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2021 
+		
+		<a href="/about" target="_blank" title="regel-zack">regel-zack</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
